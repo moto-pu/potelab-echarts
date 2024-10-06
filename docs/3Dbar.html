@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <title>3D棒グラフ</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=none">
+ <style>
+  body {
+   padding: 10px;
+  }
+  .main {
+   width: 100%;
+   height: 600px;
+  }
+ </style>
+ <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+</head>
+<body>
+<div id="main" class="main"></div>
+<script type="text/javascript">
+ const myChart = echarts.init(document.getElementById('main'));
+
+ const option = {
+  title: {
+   text: '部門別売上年度推移'
+  },
+  tooltip: {},
+  legend: {
+   right: 0,
+   data: ['目標', '実績']
+  },
+  xAxis3D: {
+   name: '売上',
+   type: 'category'
+  },
+  yAxis3D: {
+   type: 'category'
+  },
+  zAxis3D: {
+   type: 'value'
+  },
+  grid3D: {
+   boxWidth: 200,
+   boxDepth: 80,
+   viewControl: {
+    // autoRotate: true
+   }
+  },
+  dataset: {
+   source: [
+    ['部門', '年度', '目標', '実績'],
+    ['営業部', '2020', 30000, 28000],
+    ['商品企画部', '2020', 20000, 19000],
+    ['デザイン部', '2020', 36000, 35000],
+    ['技術部', '2020', 10000, 9000],
+    ['情報システム部', '2020', 10000, 9000],
+    ['総務部', '2020', 10000, 9000],
+    ['営業部', '2021', 32000, 30000],
+    ['商品企画部', '2021', 18000, 17000],
+    ['デザイン部', '2021', 36000, 35000],
+    ['技術部', '2021', 18000, 17000],
+    ['情報システム部', '2021', 9000, 8000],
+    ['総務部', '2021', 9500, 8500],
+    ['営業部', '2022', 31000, 29000],
+    ['商品企画部', '2022', 21000, 20000],
+    ['デザイン部', '2022', 37000, 36000],
+    ['技術部', '2022', 11000, 10000],
+    ['情報システム部', '2022', 11000, 10000],
+    ['総務部', '2022', 11000, 10000],
+    ['営業部', '2023', 33000, 31000],
+    ['商品企画部', '2023', 19000, 18000],
+    ['デザイン部', '2023', 38000, 37000],
+    ['技術部', '2023', 19000, 18000],
+    ['情報システム部', '2023', 10000, 9000],
+    ['総務部', '2023', 10500, 9500],
+    ['営業部', '2024', 34000, 32000],
+    ['商品企画部', '2024', 22000, 21000],
+    ['デザイン部', '2024', 39000, 38000],
+    ['技術部', '2024', 12000, 11000],
+    ['情報システム部', '2024', 12000, 11000],
+    ['総務部', '2024', 12000, 11000]
+   ]
+  },
+  series: [
+   {
+    name: '目標',
+    type: 'bar3D',
+    barSize: 8,
+    encode: { x: '部門', y: '年度', z: '目標' },
+    shading: 'lambert',
+   },
+   {
+    name: '実績',
+    type: 'bar3D',
+    barSize: 10,
+    encode: { x: '部門', y: '年度', z: '実績' },
+    shading: 'lambert',
+   }
+  ]
+ };
+
+ myChart.setOption(option);
+</script>
+</body>
+</html>
